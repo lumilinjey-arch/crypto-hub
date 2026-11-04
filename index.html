@@ -4,33 +4,95 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Web3 Degen Hub</title>
+    <link rel="icon" type="image/jpeg" href="pepe.jpg">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
-    <!-- Подключаем Three.js для 3D графики -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <!-- Scrolling News Ticker -->
-    <div class="ticker-wrap">
-        <div class="ticker">
-            <span class="ticker-item">🚨 BREAKING: SEC officially bans buying high and selling low.</span>
-            <span class="ticker-item">📉 $PEPE down 99%, community remains "bullish".</span>
-            <span class="ticker-item">🚀 Local man retires after finding 10 BTC on an old hard drive, instantly loses it in a phishing scam.</span>
-            <span class="ticker-item">💼 SBF asks for ramen funding in prison.</span>
-        </div>
+    <!-- 1. Boot Sequence Preloader -->
+    <div id="preloader">
+        <div id="preloader-text"></div>
     </div>
+
+    <!-- 2. Retro-Wave Cyber Grid -->
+    <div id="cyber-grid"></div>
+
+    <!-- 3. Laser Eyes (Hidden by default) -->
+    <div class="laser" id="laser-left"></div>
+    <div class="laser" id="laser-right"></div>
+    <!-- Cyber Dust Particles -->
+    <div id="cyber-dust"></div>
+    <!-- Cursor Trail Container -->
+    <div id="cursor-trail-container"></div>
+
+    <!-- Falling Candles Container (For Panic Mode) -->
+    <div id="candles-container"></div>
+
+    <<!-- BRAND NEW SEAMLESS TICKER -->
+        <div class="ticker-wrapper">
+            <div class="ticker-track" id="ticker-track">
+                <div class="ticker-content">
+                    <span class="ticker-item">🚨 BREAKING: SEC officially bans buying high and selling low.</span>
+                    <span class="ticker-item">📉 $PEPE down 99%, community remains "bullish".</span>
+                    <span class="ticker-item">🚀 Local man retires after finding 10 BTC on an old hard drive, instantly loses it in a phishing scam.</span>
+                    <span class="ticker-item">💼 SBF asks for ramen funding in prison.</span>
+                    <span class="ticker-item">💎 BREAKING: Developer accidentally burns $40M in liquidity, says it was "to build community trust".</span>
+                    <span class="ticker-item">🤡 "I am in it for the tech," says man holding 14 different dog-themed tokens.</span>
+                    <span class="ticker-item">🚔 Influencer deletes 400 tweets about $SCAM coin, claims he was hacked.</span>
+                    <span class="ticker-item">🔮 Web3 Founder pivots to AI, then to Quantum Computing, still hasn't shipped a product.</span>
+                    <span class="ticker-item">🏦 Local bank blocks $50 transfer for "safety", ignores $5M DeFi rug pull.</span>
+                    <span class="ticker-item">💀 Top analyst predicts Bitcoin will reach $1M or $10k by next Tuesday.</span>
+                    <span class="ticker-item">📉 Gas fees drop to 2 Gwei. Nobody has any money left to transact anyway.</span>
+                    <span class="ticker-item">🚜 Airdrop farmer clicks 10,000 times to earn $1.40. "Passive income," he says.</span>
+                    <span class="ticker-item">🧠 Trader leverages his house at 100x. "It's free real estate," moments before instant liquidation.</span>
+                    <span class="ticker-item">🚨 FBI seizes 1000 BTC, accidentally sends it to a burn address.</span>
+                </div>
+            </div>
+        </div>
 
     <!-- Background Neon Spheres -->
     <div class="aurora-glow aurora-1"></div>
     <div class="aurora-glow aurora-2"></div>
     <div class="aurora-glow aurora-3"></div>
+<!-- Floating Cyber Shapes -->
+    <div class="cyber-shapes" id="cyber-shapes">
+        <!-- Wireframe Diamond -->
+        <div class="shape shape-diamond">
+            <svg viewBox="0 0 100 150" xmlns="http://www.w3.org/2000/svg">
+                <path d="M50 5 L95 70 L50 145 L5 70 Z" fill="none" stroke="#00F0FF" stroke-width="2"/>
+                <path d="M50 5 L75 70 L50 145 L25 70 Z" fill="none" stroke="#7C3AED" stroke-width="1"/>
+                <path d="M5 70 L95 70" stroke="#00F0FF" stroke-width="1"/>
+            </svg>
+        </div>
+        <!-- Frosted Glass Sphere -->
+        <div class="shape shape-sphere"></div>
+        <!-- Neon Ring -->
+        <div class="shape shape-ring"></div>
+    </div>
+    <!-- Fake Connect Wallet Button -->
+    <div class="header-actions">
+        <button class="glass-btn connect-btn" id="connect-wallet-btn"><span>Connect Wallet</span></button>
+    </div>
 
+    <!-- Modal for Fake Wallet -->
+    <div class="modal-overlay" id="wallet-modal">
+        <div class="glass-card modal-content">
+            <h2 style="color: #ef4444;">Wallet Drained!</h2>
+            <p>Just kidding. But seriously, never connect your main wallet to random sites claiming to give you free airdrops. Stay safe out there, degen.</p>
+            <button class="glass-btn" id="close-modal-btn"><span>Phew... Got it</span></button>
+        </div>
+    </div>
+
+    
     <main class="container">
-        <!-- Hero Section with 3D Canvas -->
+        <!-- Hero Section with Neon Pepe Image -->
         <header class="hero">
-            <div id="canvas-container"></div>
+            <div class="neon-sign-container">
+                <img src="pepe.jpg" alt="Sad Neon Pepe" class="pepe-img flicker-image">
+            </div>
+            
             <div class="hero-content">
                 <h1>Web3 Degen Terminal</h1>
                 <p>The place where millions of missed gains and random shitcoin 100x's are born.</p>
@@ -43,14 +105,14 @@
                 <h2>FOMO Calculator</h2>
                 <p>Find out how much money you'd have if you hadn't bought that iPhone.</p>
                 <div class="input-group">
-                    <input type="number" id="fomo-amount" placeholder="Amount in $ (e.g., 1000)">
+                    <input type="number" id="fomo-amount" placeholder="Amount in \$ (e.g., 1000)">
                     <select id="fomo-coin">
                         <option value="btc">Bitcoin (in 2013)</option>
                         <option value="doge">DOGE (in 2020)</option>
                         <option value="sol">Solana (2021 bottom)</option>
                     </select>
                 </div>
-                <button class="glass-btn" id="fomo-btn">Calculate the Pain</button>
+                <button class="glass-btn" id="fomo-btn"><span>Calculate the Pain</span></button>
                 <div class="result-box" id="fomo-result"></div>
             </section>
 
@@ -59,13 +121,50 @@
                 <h2>Shitcoin Roulette</h2>
                 <p>Don't know where to dump your deposit? Trust the financial chaos generator.</p>
                 <div class="roulette-display" id="roulette-display">
-                    <span class="placeholder">Click the button</span>
+                    <span class="placeholder">Awaiting your fate...</span>
                 </div>
-                <button class="glass-btn" id="roulette-btn">Spin the Roulette</button>
+                <button class="glass-btn" id="roulette-btn"><span>Spin the Roulette</span></button>
             </section>
         </div>
 
-        <!-- NEW: Greed & Leverage Meter -->
+        <div class="grid-layout">
+            <!-- 3. Excuse Generator -->
+            <section class="glass-card excuse-section">
+                <h2>Portfolio Defense System</h2>
+                <p>Need to explain to your family why you're eating instant noodles again? Generate a flawless Web3 excuse.</p>
+                
+                <div class="terminal-display" id="excuse-display">
+                    "Waiting for system initialization..."
+                </div>
+                
+                <button class="glass-btn" id="excuse-btn"><span>Generate Excuse</span></button>
+            </section>
+
+            <!-- 4. Hopium Injector -->
+            <section class="glass-card hopium-section">
+                <h2>Daily Hopium Injector</h2>
+                <p>Hold the button to inhale pure hopium and restore your faith in the impending bull market.</p>
+                
+                <div class="progress-container">
+                    <div class="progress-bar" id="hopium-bar"></div>
+                    <div class="progress-text" id="hopium-text">0%</div>
+                </div>
+                
+                <button class="glass-btn hold-btn" id="hopium-btn"><span>HOLD TO INHALE</span></button>
+            </section>
+        </div>
+<!-- NEW: Rug Pull Simulator -->
+        <section class="glass-card rugpull-section">
+            <h2>Live "Next 100x Gem" Chart</h2>
+            <p>Pump the token to the moon! Just don't be the last one holding the bag when the dev wallets wake up.</p>
+            
+            <div class="chart-container" id="crypto-chart">
+                <div class="chart-status" id="chart-status">Market Cap: $1,000</div>
+            </div>
+            
+            <button class="glass-btn" id="pump-btn"><span>PUMP IT 🟢</span></button>
+        </section>
+        <!-- 5. Greed & Leverage Meter -->
         <section class="glass-card meter-section">
             <h2>Leverage & Greed Meter</h2>
             <p>Select your trading leverage to see your future.</p>
@@ -80,8 +179,192 @@
                 <p>You sleep well at night, but you'll probably never buy a Lambo.</p>
             </div>
         </section>
+<!-- NEW GRID: Pro Tools -->
+        <div class="grid-layout">
+            <!-- 8. Liquidation Engine -->
+            <section class="glass-card liq-section">
+                <h2>Liquidation Engine</h2>
+                <p>Calculate exactly when you will lose everything.</p>
+                <div class="input-group">
+                    <input type="number" id="liq-entry" placeholder="Entry Price ($)">
+                    <select id="liq-leverage">
+                        <option value="10">10x Leverage</option>
+                        <option value="20">20x Leverage</option>
+                        <option value="50">50x Leverage</option>
+                        <option value="100">100x Leverage (God Mode)</option>
+                    </select>
+                    <select id="liq-position">
+                        <option value="long">Long (Going Up)</option>
+                        <option value="short">Short (Going Down)</option>
+                    </select>
+                </div>
+                <button class="glass-btn" id="liq-btn"><span>Get Liquidation Price</span></button>
+                <div class="result-box" id="liq-result"></div>
+            </section>
 
-        <!-- 3. Hall of (Scam) Fame -->
+            <!-- 9. Impermanent Loss -->
+            <section class="glass-card il-section">
+                <h2>Impermanent Loss</h2>
+                <p>Did providing liquidity actually make you poor?</p>
+                <div class="input-group">
+                    <input type="number" id="il-price-change" placeholder="Token Price Drop % (e.g. 50)">
+                    <select id="il-pool-type">
+                        <option value="5050">Standard 50/50 Pool</option>
+                        <option value="8020">80/20 Pool</option>
+                    </select>
+                </div>
+                <button class="glass-btn" id="il-btn"><span>Calculate Loss</span></button>
+                <div class="result-box" id="il-result"></div>
+            </section>
+        </div>
+
+        <!-- 10. Fake Smart Contract Scanner -->
+        <section class="glass-card scanner-section">
+            <h2>Smart Contract Auditor</h2>
+            <p>Paste any token address. Our AI will decompile the bytecode and find the honeypots.</p>
+            <div class="input-group" style="flex-direction: row; gap: 10px;">
+                <input type="text" id="scanner-input" placeholder="0x..." style="flex-grow: 1;">
+                <button class="glass-btn" id="scanner-btn" style="width: auto;"><span>SCAN</span></button>
+            </div>
+            <div class="terminal-display hacker-terminal" id="scanner-terminal">
+                > Awaiting contract address...
+            </div>
+        </section>
+        <!-- 12. Exit Liquidity Planner (Take-Profit Ladder) -->
+        <section class="glass-card tp-section" style="grid-column: 1 / -1;">
+            <h2>Take-Profit Ladder (Exit Liquidity Planner)</h2>
+            <p>Actually useful: Plan your limit orders before the influencer who shilled you dumps their bags. Map your exit strategy.</p>
+
+            <div class="planner-grid">
+                <!-- Ввод данных -->
+                <div class="planner-inputs">
+                    <div class="input-group">
+                        <label>Bag Size (Total Tokens)</label>
+                        <input type="number" id="tp-tokens" placeholder="e.g. 10000" value="10000">
+                    </div>
+                    <div class="input-group">
+                        <label>Average Buy Price ($)</label>
+                        <input type="number" id="tp-buy-price" placeholder="e.g. 0.5" value="0.5">
+                    </div>
+                    
+                    <hr class="divider">
+                    
+                    <div class="input-group">
+                        <label>Target 1 (Price $ & % of bag to sell)</label>
+                        <div class="dual-input">
+                            <input type="number" id="tp-price-1" placeholder="Price $" value="1.0">
+                            <input type="number" id="tp-pct-1" placeholder="%" value="25">
+                        </div>
+                    </div>
+                    <div class="input-group">
+                        <label>Target 2 (Price $ & % of bag to sell)</label>
+                        <div class="dual-input">
+                            <input type="number" id="tp-price-2" placeholder="Price $" value="2.5">
+                            <input type="number" id="tp-pct-2" placeholder="%" value="50">
+                        </div>
+                    </div>
+                    <div class="input-group">
+                        <label>Target 3 (Moonbag)</label>
+                        <div class="dual-input">
+                            <input type="number" id="tp-price-3" placeholder="Price $" value="10.0">
+                            <input type="number" id="tp-pct-3" placeholder="%" value="25">
+                        </div>
+                    </div>
+                    
+                    <button class="glass-btn" id="tp-calc-btn"><span>Build Take-Profit Ladder</span></button>
+                </div>
+
+                <!-- Визуализация -->
+                <div class="planner-visual">
+                    <div class="ladder-container" id="tp-ladder-container">
+                        <p class="placeholder-text">Your take-profit ladder will appear here...</p>
+                    </div>
+                    <div class="tp-summary" id="tp-summary"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 13. Wen Retire Compounding Engine -->
+        <section class="glass-card retire-section" style="grid-column: 1 / -1;">
+            <h2>"Wen Retire" Compounding Engine</h2>
+            <p>The ultimate hopium machine. Calculate your staking/yield farming returns and see exactly when you can tell your boss to have fun staying poor.</p>
+
+            <div class="planner-grid">
+                <!-- Ввод данных -->
+                <div class="planner-inputs">
+                    <div class="input-group">
+                        <label>Initial Capital ($)</label>
+                        <input type="number" id="retire-initial" placeholder="e.g. 1000" value="1000">
+                    </div>
+                    <div class="input-group">
+                        <label>Monthly Addition ($) - Keep buying the dip</label>
+                        <input type="number" id="retire-monthly" placeholder="e.g. 200" value="200">
+                    </div>
+                    <div class="input-group">
+                        <label>Expected APY (%) - Annual Yield</label>
+                        <input type="number" id="retire-apy" placeholder="e.g. 20" value="20">
+                    </div>
+                    <div class="input-group">
+                        <label>Time Horizon (Years)</label>
+                        <input type="number" id="retire-years" placeholder="e.g. 5" value="5" max="50">
+                    </div>
+                    
+                    <button class="glass-btn" id="retire-calc-btn"><span>Simulate Wealth</span></button>
+                </div>
+
+                <!-- Визуализация графика -->
+                <div class="planner-visual">
+                    <div class="retire-summary" id="retire-summary">
+                        Total Value: <span class="highlight">$0</span>
+                    </div>
+                    <div class="compound-chart" id="compound-chart">
+                        <p class="placeholder-text">Chart will generate here...</p>
+                    </div>
+                    <div class="retire-verdict" id="retire-verdict"></div>
+                </div>
+            </div>
+        </section>
+        <!-- 1. Copium Visualizer -->
+        <section class="glass-card copium-section">
+            <h2>Copium Visualizer</h2>
+            <p>How much did you lose buying the top? Let's see what you could have bought.</p>
+            <input type="range" id="copium-slider" min="10" max="1000000" value="10" step="10" class="degen-slider">
+            <div id="copium-result" style="font-size: 1.5rem; text-align: center; margin-top: 15px;">Lost: $<span id="copium-lost" class="highlight">10</span></div>
+            <div id="copium-emoji" style="font-size: 4rem; text-align: center; margin-top: 10px;">🍔</div>
+            <div id="copium-text" style="text-align: center; color: var(--accent-blue); font-weight: bold;">A value meal.</div>
+        
+        </section>
+    
+
+        <!-- 2. Shitcoin Generator -->
+        <section class="glass-card shitcoin-section">
+            <h2>Tier-4 Scam Generator</h2>
+            <button class="glass-btn" id="scam-gen-btn"><span>Mint New Shitcoin</span></button>
+            <div class="terminal-display" id="scam-display" style="margin-top: 20px; font-size: 1.1rem; min-height: 100px;">
+                > Ready to deploy...
+            </div>
+        </section>
+
+        <!-- 4. Founder Apology Generator -->
+        <section class="glass-card apology-section" style="grid-column: 1 / -1;">
+            <h2>CEO Apology Generator</h2>
+            <button class="glass-btn" id="apology-btn"><span>Generate "We got hacked" tweet</span></button>
+            <div class="terminal-display hacker-terminal" id="apology-display" style="margin-top: 20px; white-space: pre-wrap; font-size: 1rem; color: #a1a1aa; min-height: 150px; text-align: left;">
+                > Awaiting exploit...
+            </div>
+        </section>
+        <!-- 11. VC Pitch Generator -->
+        <section class="glass-card vc-section" style="grid-column: 1 / -1;">
+            <h2>Tier-1 VC Pitch Generator</h2>
+            <p>Need a $10M seed round? Generate a fully buzzword-compliant pitch combining AI, ZK, and Web3 synergy.</p>
+            
+            <div class="terminal-display" id="vc-display" style="font-size: 1.2rem; min-height: 120px;">
+                "Press the button to disrupt the industry..."
+            </div>
+            
+            <button class="glass-btn" id="vc-btn" style="max-width: 300px; margin: 0 auto; display: block;"><span>Pitch to VCs</span></button>
+        </section>
+        <!-- 6. Hall of (Scam) Fame -->
         <section class="glass-card drama-section">
             <h2>Hall of (Scam) Fame</h2>
             <p>Timeline of projects that promised the moon but delivered a subpoena.</p>
@@ -89,17 +372,17 @@
                 <div class="timeline-item glass-card-inner">
                     <div class="timeline-date">November 2022</div>
                     <h3>FTX & Sam Bankman-Fried</h3>
-                    <p>Lost: $8.9B. Cause: Lending user funds to their own trading firm. Outcome: 25 years in prison.</p>
+                    <p>Lost: \$8.9B. Cause: Lending user funds to their own trading firm. Outcome: 25 years in prison.</p>
                 </div>
                 <div class="timeline-item glass-card-inner">
                     <div class="timeline-date">May 2022</div>
                     <h3>Terra (LUNA) & UST</h3>
-                    <p>Lost: $60B. Cause: Algorithmic stablecoin depegged. Outcome: Do Kwon on the run, ecosystem destroyed.</p>
+                    <p>Lost: \$60B. Cause: Algorithmic stablecoin depegged. Outcome: Do Kwon on the run, ecosystem destroyed.</p>
                 </div>
             </div>
         </section>
 
-        <!-- NEW: Degen Glossary (Accordion) -->
+        <!-- 7. Degen Glossary -->
         <section class="glass-card glossary-section">
             <h2>Degen Glossary</h2>
             <p>Speak like a true crypto native. Don't be a normie.</p>
@@ -123,16 +406,22 @@
                         <p>When the anonymous developers of your favorite dog-themed token suddenly disappear with all the liquidity.</p>
                     </div>
                 </div>
-                <div class="accordion-item glass-card-inner">
-                    <button class="accordion-header">Diamond Hands 💎🙌 <span class="icon">+</span></button>
-                    <div class="accordion-content">
-                        <p>Refusing to sell an asset regardless of how much it drops, usually resulting in holding it all the way to zero.</p>
-                    </div>
-                </div>
             </div>
         </section>
     </main>
 
-    <script src="app.js"></script>
+
+    <!-- Обертка для плавающих виджетов (чтобы на мобилках они не хаотично летали, а стояли аккуратно) -->
+    <div class="mobile-widgets-bar">
+        <!-- 9. Teleporting Airdrop Button -->
+    <button class="glass-btn" id="airdrop-btn" style="position: fixed; bottom: 80px; left: 20px; z-index: 99999; border-color: #fbbf24; color: #fbbf24; box-shadow: 0 0 20px rgba(251, 191, 36, 0.3); transition: all 0.2s ease-out; width: auto;">Claim Free $10,000</button>
+
+    <!-- 10. Touch Grass Button & Overlay -->
+    <button id="grass-btn" style="position: fixed; bottom: 15px; left: 50%; transform: translateX(-50%); background: #111; border: 1px solid rgba(57, 255, 20, 0.5); color: rgba(57, 255, 20, 0.8); padding: 8px 20px; border-radius: 999px; cursor: pointer; z-index: 9999999; font-size: 0.9rem; font-weight: bold; box-shadow: 0 0 10px rgba(57, 255, 20, 0.2);">Touch Grass</button>
+    
+    <div id="grass-overlay" style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background-color: #7cfc00; background-image: url('https://images.unsplash.com/photo-1500382017468-9049fed747ef?q=80&w=2000&auto=format&fit=crop'); background-size: cover; background-position: center; z-index: 9999998; opacity: 0; pointer-events: none; transition: opacity 1.5s ease; display: flex; align-items: center; justify-content: center;">
+        <h1 style="color: white; font-size: 4rem; font-family: 'Inter', sans-serif; text-shadow: 0 4px 20px rgba(0,0,0,0.8); text-align: center;">Take a walk, anon.<br><span style="font-size: 1.5rem">The charts aren't real.</span></h1>
+    </div>
+<script src="app.js"></script>
 </body>
 </html>
