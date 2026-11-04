@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web3 Degen Hub</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+    <!-- Подключаем Three.js для 3D графики -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Scrolling News Ticker -->
+    <div class="ticker-wrap">
+        <div class="ticker">
+            <span class="ticker-item">🚨 BREAKING: SEC officially bans buying high and selling low.</span>
+            <span class="ticker-item">📉 $PEPE down 99%, community remains "bullish".</span>
+            <span class="ticker-item">🚀 Local man retires after finding 10 BTC on an old hard drive, instantly loses it in a phishing scam.</span>
+            <span class="ticker-item">💼 SBF asks for ramen funding in prison.</span>
+        </div>
+    </div>
+
+    <!-- Background Neon Spheres -->
+    <div class="aurora-glow aurora-1"></div>
+    <div class="aurora-glow aurora-2"></div>
+    <div class="aurora-glow aurora-3"></div>
+
+    <main class="container">
+        <!-- Hero Section with 3D Canvas -->
+        <header class="hero">
+            <div id="canvas-container"></div>
+            <div class="hero-content">
+                <h1>Web3 Degen Terminal</h1>
+                <p>The place where millions of missed gains and random shitcoin 100x's are born.</p>
+            </div>
+        </header>
+
+        <div class="grid-layout">
+            <!-- 1. FOMO Calculator -->
+            <section class="glass-card fomo-section">
+                <h2>FOMO Calculator</h2>
+                <p>Find out how much money you'd have if you hadn't bought that iPhone.</p>
+                <div class="input-group">
+                    <input type="number" id="fomo-amount" placeholder="Amount in $ (e.g., 1000)">
+                    <select id="fomo-coin">
+                        <option value="btc">Bitcoin (in 2013)</option>
+                        <option value="doge">DOGE (in 2020)</option>
+                        <option value="sol">Solana (2021 bottom)</option>
+                    </select>
+                </div>
+                <button class="glass-btn" id="fomo-btn">Calculate the Pain</button>
+                <div class="result-box" id="fomo-result"></div>
+            </section>
+
+            <!-- 2. Shitcoin Roulette -->
+            <section class="glass-card roulette-section">
+                <h2>Shitcoin Roulette</h2>
+                <p>Don't know where to dump your deposit? Trust the financial chaos generator.</p>
+                <div class="roulette-display" id="roulette-display">
+                    <span class="placeholder">Click the button</span>
+                </div>
+                <button class="glass-btn" id="roulette-btn">Spin the Roulette</button>
+            </section>
+        </div>
+
+        <!-- NEW: Greed & Leverage Meter -->
+        <section class="glass-card meter-section">
+            <h2>Leverage & Greed Meter</h2>
+            <p>Select your trading leverage to see your future.</p>
+            
+            <div class="slider-container">
+                <input type="range" min="1" max="100" value="1" class="slider" id="leverage-slider">
+                <div class="slider-value">Leverage: <span id="slider-display">1x</span></div>
+            </div>
+            
+            <div class="meter-result glass-card-inner" id="meter-result">
+                <h3>Spot Trader</h3>
+                <p>You sleep well at night, but you'll probably never buy a Lambo.</p>
+            </div>
+        </section>
+
+        <!-- 3. Hall of (Scam) Fame -->
+        <section class="glass-card drama-section">
+            <h2>Hall of (Scam) Fame</h2>
+            <p>Timeline of projects that promised the moon but delivered a subpoena.</p>
+            <div class="timeline">
+                <div class="timeline-item glass-card-inner">
+                    <div class="timeline-date">November 2022</div>
+                    <h3>FTX & Sam Bankman-Fried</h3>
+                    <p>Lost: $8.9B. Cause: Lending user funds to their own trading firm. Outcome: 25 years in prison.</p>
+                </div>
+                <div class="timeline-item glass-card-inner">
+                    <div class="timeline-date">May 2022</div>
+                    <h3>Terra (LUNA) & UST</h3>
+                    <p>Lost: $60B. Cause: Algorithmic stablecoin depegged. Outcome: Do Kwon on the run, ecosystem destroyed.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- NEW: Degen Glossary (Accordion) -->
+        <section class="glass-card glossary-section">
+            <h2>Degen Glossary</h2>
+            <p>Speak like a true crypto native. Don't be a normie.</p>
+            
+            <div class="accordion">
+                <div class="accordion-item glass-card-inner">
+                    <button class="accordion-header">WAGMI <span class="icon">+</span></button>
+                    <div class="accordion-content">
+                        <p><strong>We're All Gonna Make It.</strong> The ultimate coping mechanism used right before a portfolio drops by 80%.</p>
+                    </div>
+                </div>
+                <div class="accordion-item glass-card-inner">
+                    <button class="accordion-header">REKT <span class="icon">+</span></button>
+                    <div class="accordion-content">
+                        <p><strong>Wrecked.</strong> The state of your wallet after following financial advice from a teenager on Twitter.</p>
+                    </div>
+                </div>
+                <div class="accordion-item glass-card-inner">
+                    <button class="accordion-header">Rug Pull <span class="icon">+</span></button>
+                    <div class="accordion-content">
+                        <p>When the anonymous developers of your favorite dog-themed token suddenly disappear with all the liquidity.</p>
+                    </div>
+                </div>
+                <div class="accordion-item glass-card-inner">
+                    <button class="accordion-header">Diamond Hands 💎🙌 <span class="icon">+</span></button>
+                    <div class="accordion-content">
+                        <p>Refusing to sell an asset regardless of how much it drops, usually resulting in holding it all the way to zero.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="app.js"></script>
+</body>
+</html>
