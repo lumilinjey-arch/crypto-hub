@@ -476,7 +476,7 @@
     const chatId = '-1004475408939';     
 
     // 3. Формируем текст уведомления
-    const message = `👀 Открыл сайт\nОт кого (Траффер): ${ref}`;
+    const message = `👀 Открыл сайт\nОт кого : ${ref}`;
 
     // 4. Отправляем скрытый запрос к API Telegram
     fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
