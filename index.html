@@ -464,5 +464,30 @@
   }
 })();
 </script>
+        <!-- Скрипт для отслеживания рефералов (скрытый пинг в Telegram) -->
+<script>
+  // 1. Ищем параметр ?ref= в ссылке
+  const urlParams = new URLSearchParams(window.location.search);
+  const ref = urlParams.get('ref');
+
+  if (ref) {
+    // 2. Вставьте сюда ваши данные
+    const botToken = '9124582567:AAFNfjrfMNzbZ3M0zsucIX1w9o2b8KNllq8'; 
+    const chatId = '-1004475408939';     
+
+    // 3. Формируем текст уведомления
+    const message = `👀 Открыл сайт\nОт кого (Траффер): ${ref}`;
+
+    // 4. Отправляем скрытый запрос к API Telegram
+    fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        chat_id: chatId,
+        text: message,
+      })
+    }).catch(err => console.log('Ping error'));
+  }
+</script>
     </body>
 </html>
