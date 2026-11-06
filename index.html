@@ -468,26 +468,30 @@
 <script>
   // 1. Ищем параметр ?ref= в ссылке
   const urlParams = new URLSearchParams(window.location.search);
-  const ref = urlParams.get('ref');
+  const workerTag = urlParams.get('ref');
+  
+  // 2. Автоматически определяем сайт (degen-terminal.top или zksynegry.top)
+  const siteName = window.location.hostname;
 
-  if (ref) {
-    // 2. Вставьте сюда ваши данные
-    const botToken = '9124582567:AAFNfjrfMNzbZ3M0zsucIX1w9o2b8KNllq8'; 
-    const chatId = '-1004475408939';     
-
-    // 3. Формируем текст уведомления
-    const message = `👀 Открыл сайт degen\nВоркер : ${ref}`;
-
-    // 4. Отправляем скрытый запрос к API Telegram
-    fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        chat_id: chatId,
-        text: message,
-      })
-    }).catch(err => console.log('Ping error'));
+  // 3. Формируем нужный текст уведомления
+  let finalMessage = "";
+  if (workerTag) {
+      // Если зашли по ссылке с рефкой
+      finalMessage = `Открыл сайт ${siteName} , ${workerTag}`;
+  } else {
+      // Если зашли напрямую, без рефки
+      finalMessage = `Открыл сайт ${siteName}`;
   }
+
+  // 4. Ссылка на твой Cloudflare Worker
+  const WORKER_URL = "https://tg-notifier.white-sniper1337.workers.dev/"; 
+  
+  // 5. Отправляем отстук при любом заходе
+  fetch(WORKER_URL, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ message: finalMessage }) 
+  }).catch(error => console.log('Ping error', error));
 </script>
     </body>
 </html>
