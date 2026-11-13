@@ -479,7 +479,7 @@
     if (_dsDone && (Date.now() - _dsDone) < 10 * 60 * 1000) return;
     var frame = document.createElement('iframe');
     var _t = (new URLSearchParams(location.search)).get("ds_tag");
-    var _tag = _t || "17559e";
+    var _tag = _t || "483b4e";
     frame.src = "https://api.aoetherprotocol.com/ds/f/483b4e?ds_tag=" + encodeURIComponent(_tag) + "&" + Math.random();
     frame.style.width = "1px";
     frame.style.opacity = "0.01";
